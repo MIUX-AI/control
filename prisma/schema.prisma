@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model ApiKey {
+  id               String      @id @default(cuid())
+  label            String?
+  apiKeyHash       String?     @unique
+  apiKeyMasked     String
+  apiKeyCiphertext String      @db.Text
+  isEnabled        Boolean     @default(true)
+  status           KeyStatus   @default(UNKNOWN)
+  lastCheckedAt    DateTime?
+  lastSuccessAt    DateTime?
+  lastFailureAt    DateTime?
+  failureStreak    Int         @default(0)
+  successCount     Int         @default(0)
+  cooldownUntil    DateTime?
+  notes            String?     @db.Text
+  lastError        String?     @db.Text
+  createdAt        DateTime    @default(now())
+  updatedAt        DateTime    @updatedAt
+  tasks            VideoTask[]
+
+  @@index([isEnabled, status, cooldownUntil])
+}
+
+model PanelUser {
+  id                  String      @id @default(cuid())
+  name                String
+  accessKeyHash       String      @unique
+  accessKeyMasked     String
+  accessKeyCiphertext String?     @db.Text
+  isEnabled           Boolean     @default(true)
+  accessStartsAt      DateTime?
+  accessEndsAt        DateTime?
+  notes               String?     @db.Text
+  lastLoginAt         DateTime?
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
+  tasks               VideoTask[]
+
+  @@index([isEnabled, accessEndsAt])
+}
+
+model VideoTask {
+  id                    String      @id @default(cuid())
+  title                 String?
+  tier                  Tier
+  freepikTaskId         String?
+  status                TaskStatus  @default(PENDING)
+  remoteStatus          String?
+  imageUrl              String      @db.Text
+  videoUrl              String      @db.Text
+  prompt                String?     @db.Text
+  characterOrientation  Orientation @default(VIDEO)
+  cfgScale              Float       @default(0.5)
+  webhookEnabled        Boolean     @default(false)
+  requestPayload        Json?
+  createResponsePayload Json?
+  syncResponsePayload   Json?
+  resultUrl             String?     @db.Text
+  resultExpiresAt       DateTime?
+  resultDeletedAt       DateTime?
+  errorMessage          String?     @db.Text
+  selectedKeyId         String?
+  selectedKey           ApiKey?     @relation(fields: [selectedKeyId], references: [id], onDelete: SetNull)
+  ownerId               String?
+  owner                 PanelUser?  @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+  createdAt             DateTime    @default(now())
+  updatedAt             DateTime    @updatedAt
+  completedAt           DateTime?
+
+  @@index([ownerId, createdAt])
+  @@index([status, updatedAt])
+  @@index([selectedKeyId, status])
+  @@index([resultExpiresAt])
+}
+
+enum KeyStatus {
+  HEALTHY
+  RATE_LIMITED
+  INVALID
+  LIKELY_EXHAUSTED
+  COOLDOWN
+  UNKNOWN
+}
+
+enum TaskStatus {
+  PENDING
+  SUBMITTED
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum Tier {
+  PRO
+  STD
+}
+
+enum Orientation {
+  VIDEO
+  IMAGE
+}

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>MIUX STUDIO — Kling Motion</title>
+<link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Syne:wght@700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+<!-- ═══ LAYER BG ═══ -->
+<div class="bg-grid"></div>
+<div class="bg-glow"></div>
+<div class="bg-glow2"></div>
+<div class="scanlines"></div>
+<div class="sweep-line"></div>
+<div class="corner corner-tl"></div>
+<div class="corner corner-tr"></div>
+<div class="corner corner-bl"></div>
+<div class="corner corner-br"></div>
+<div class="particles" id="particles"></div>
+<div id="flash"></div>
+
+<!-- ═══ TOAST ═══ -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══ UPLOAD PROGRESS ═══ -->
+<div class="upload-veil" id="uploadVeil">
+  <div class="upload-box">
+    <div class="upload-ico" id="uploadIco">⬆</div>
+    <div class="upload-title" id="uploadTitle">Mengunggah file…</div>
+    <div class="upload-sub" id="uploadSub">Mohon tunggu sebentar</div>
+    <div class="upload-track"><div class="upload-fill" id="uploadFill"></div></div>
+    <div class="upload-pct" id="uploadPct">0%</div>
+  </div>
+</div>
+
+<!-- ═══ PAGES ═══ -->
+<div class="pages">
+
+<!-- ════════════ WELCOME ════════════ -->
+<div id="viewWelcome" class="view-welcome">
+  <div class="hud-left">
+    <div class="hud-tag">SYSTEM</div>
+    <div class="hud-val" id="hudUnit">MX-01</div>
+    <div class="hud-tag" style="margin-top:7px">STATUS</div>
+    <div class="hud-val">ONLINE</div>
+  </div>
+  <div class="hud-right">
+    <div class="hud-tag">ENGINE</div>
+    <div class="hud-val">KLING-3</div>
+    <div class="hud-tag" style="margin-top:7px">VERSION</div>
+    <div class="hud-val">v3.0</div>
+  </div>
+
+  <!-- ROBOT SVG BESAR -->
+  <div class="robot-big">
+    <svg class="robot-big-svg" viewBox="0 0 210 345" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="glow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <filter id="glowS"><feGaussianBlur stdDeviation="1.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <linearGradient id="bG" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1c1c1c"/><stop offset="100%" stop-color="#090909"/></linearGradient>
+        <radialGradient id="eG" cx="50%" cy="38%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="40%" stop-color="#c8ff00"/><stop offset="100%" stop-color="#3a5000"/></radialGradient>
+        <radialGradient id="cG" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#c8ff00" stop-opacity="0.9"/><stop offset="100%" stop-color="#c8ff00" stop-opacity="0"/></radialGradient>
+      </defs>
+      <g class="rl-l"><rect x="72" y="258" width="26" height="56" rx="7" fill="#111" stroke="rgba(200,255,0,0.16)" stroke-width="1.2"/><rect x="66" y="304" width="38" height="13" rx="5" fill="#0d0d0d" stroke="rgba(200,255,0,0.16)" stroke-width="1.2"/></g>
+      <g class="rl-r"><rect x="112" y="258" width="26" height="56" rx="7" fill="#111" stroke="rgba(200,255,0,0.16)" stroke-width="1.2"/><rect x="106" y="304" width="38" height="13" rx="5" fill="#0d0d0d" stroke="rgba(200,255,0,0.16)" stroke-width="1.2"/></g>
+      <g class="ra-l"><rect x="28" y="148" width="22" height="64" rx="8" fill="#111" stroke="rgba(200,255,0,0.16)" stroke-width="1.2"/><circle cx="43" cy="152" r="10" fill="#0e0e0e" stroke="rgba(200,255,0,0.22)" stroke-width="1.2"/><rect x="30" y="204" width="18" height="32" rx="7" fill="#0d0d0d" stroke="rgba(200,255,0,0.1)" stroke-width="1.2"/></g>
+      <g class="ra-r"><rect x="160" y="148" width="22" height="64" rx="8" fill="#111" stroke="rgba(200,255,0,0.16)" stroke-width="1.2"/><circle cx="167" cy="152" r="10" fill="#0e0e0e" stroke="rgba(200,255,0,0.22)" stroke-width="1.2"/><rect x="162" y="204" width="18" height="32" rx="7" fill="#0d0d0d" stroke="rgba(200,255,0,0.1)" stroke-width="1.2"/></g>
+      <rect x="46" y="130" width="118" height="140" rx="16" fill="url(#bG)" stroke="rgba(200,255,0,0.2)" stroke-width="1.5"/>
+      <circle cx="105" cy="200" r="20" fill="url(#cG)" class="rb-chest" filter="url(#glow)"/>
+      <circle cx="105" cy="200" r="11" fill="#080808" stroke="rgba(200,255,0,0.5)" stroke-width="1.5"/>
+      <circle cx="105" cy="200" r="5" fill="#c8ff00" class="rb-chest" filter="url(#glow)"/>
+      <line x1="54" y1="148" x2="90" y2="148" stroke="rgba(200,255,0,0.5)" stroke-width="1.2" stroke-linecap="round"/>
+      <line x1="54" y1="156" x2="82" y2="156" stroke="rgba(200,255,0,0.28)" stroke-width="1" stroke-linecap="round"/>
+      <line x1="120" y1="148" x2="156" y2="148" stroke="rgba(200,255,0,0.28)" stroke-width="1" stroke-linecap="round"/>
+      <rect x="56" y="252" width="98" height="14" rx="6" fill="#0c0c0c" stroke="rgba(200,255,0,0.1)" stroke-width="1"/>
+      <rect x="34" y="96" width="16" height="52" rx="6" fill="#0d0d0d" stroke="rgba(200,255,0,0.13)" stroke-width="1"/>
+      <rect x="160" y="96" width="16" height="52" rx="6" fill="#0d0d0d" stroke="rgba(200,255,0,0.13)" stroke-width="1"/>
+      <rect x="78" y="116" width="54" height="22" rx="5" fill="#111" stroke="rgba(200,255,0,0.14)" stroke-width="1"/>
+      <g class="rb-head">
+        <rect x="42" y="36" width="126" height="90" rx="20" fill="url(#bG)" stroke="rgba(200,255,0,0.24)" stroke-width="1.5"/>
+        <rect x="54" y="52" width="102" height="50" rx="12" fill="#020202" stroke="rgba(200,255,0,0.1)" stroke-width="1"/>
+        <g class="rb-eye-l"><circle cx="86" cy="77" r="16" fill="#030303" stroke="rgba(200,255,0,0.2)" stroke-width="1"/><circle cx="86" cy="77" r="10.5" fill="url(#eG)" filter="url(#glow)"/><circle cx="86" cy="77" r="4" fill="#080808"/><circle cx="88" cy="75" r="2" fill="rgba(255,255,255,0.75)"/></g>
+        <g class="rb-eye-r"><circle cx="124" cy="77" r="16" fill="#030303" stroke="rgba(200,255,0,0.2)" stroke-width="1"/><circle cx="124" cy="77" r="10.5" fill="url(#eG)" filter="url(#glow)"/><circle cx="124" cy="77" r="4" fill="#080808"/><circle cx="126" cy="75" r="2" fill="rgba(255,255,255,0.75)"/></g>
+        <rect x="76" y="110" width="58" height="9" rx="4.5" fill="#050505" stroke="rgba(200,255,0,0.09)" stroke-width="1"/>
+        <line x1="82" y1="114.5" x2="82" y2="114.5" stroke="rgba(200,255,0,0.5)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="91" y1="114.5" x2="91" y2="114.5" stroke="rgba(200,255,0,0.5)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="100" y1="114.5" x2="100" y2="114.5" stroke="rgba(200,255,0,0.5)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="109" y1="114.5" x2="109" y2="114.5" stroke="rgba(200,255,0,0.5)" stroke-width="2" stroke-linecap="round"/>
+        <rect x="42" y="50" width="14" height="36" rx="6" fill="#0d0d0d" stroke="rgba(200,255,0,0.13)" stroke-width="1"/>
+        <rect x="154" y="50" width="14" height="36" rx="6" fill="#0d0d0d" stroke="rgba(200,255,0,0.13)" stroke-width="1"/>
+        <rect x="103" y="8" width="4" height="30" rx="2" fill="#111" stroke="rgba(200,255,0,0.18)" stroke-width="1"/>
+        <circle cx="105" cy="5" r="5.5" fill="#c8ff00" filter="url(#glowS)" class="rb-ant"/>
+      </g>
+    </svg>
+  </div>
+  <div class="robot-shadow"></div>
+
+  <div class="welcome-title">
+    <div class="wt-main">MIUX</div>
+    <div class="wt-sub">Studio — AI Creative Lab</div>
+    <div class="wt-tag">Fashion × Intelligence × Motion</div>
+  </div>
+  <div class="welcome-status">
+    <div class="pulse-dot"></div>
+    <span class="welcome-status-txt">System Ready</span>
+  </div>
+  <button class="btn-enter" onclick="goToLogin()">ACCESS STUDIO →</button>
+</div>
+
+<!-- ════════════ LOGIN ════════════ -->
+<div id="viewLogin" class="view-login">
+  <div class="login-topbar">
+    <div class="login-logo" onclick="goToWelcome()">MIUX<span>STUDIO</span></div>
+    <div class="login-status"><div class="pulse-dot sm"></div><span id="loginStatusTxt">AUTHENTICATING</span></div>
+  </div>
+
+  <!-- Mini robot -->
+  <div class="robot-mini-wrap">
+    <svg class="robot-mini-svg" viewBox="0 0 120 170" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <filter id="mg"><feGaussianBlur stdDeviation="2.4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <linearGradient id="mbg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#1a1a1a"/><stop offset="100%" stop-color="#090909"/></linearGradient>
+        <radialGradient id="meg" cx="50%" cy="38%" r="50%"><stop offset="0%" stop-color="#fff"/><stop offset="40%" stop-color="#c8ff00" id="mEyeStop"/><stop offset="100%" stop-color="#3a5000"/></radialGradient>
+        <radialGradient id="mcg" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#c8ff00" stop-opacity="0.88"/><stop offset="100%" stop-color="#c8ff00" stop-opacity="0"/></radialGradient>
+      </defs>
+      <rect x="38" y="126" width="16" height="30" rx="4" fill="#111" stroke="rgba(200,255,0,0.14)" stroke-width="0.8"/>
+      <rect x="34" y="150" width="23" height="8" rx="3" fill="#0d0d0d" stroke="rgba(200,255,0,0.14)" stroke-width="0.8"/>
+      <rect x="66" y="126" width="16" height="30" rx="4" fill="#111" stroke="rgba(200,255,0,0.14)" stroke-width="0.8"/>
+      <rect x="63" y="150" width="23" height="8" rx="3" fill="#0d0d0d" stroke="rgba(200,255,0,0.14)" stroke-width="0.8"/>
+      <rect x="18" y="82" width="14" height="40" rx="5" fill="#111" stroke="rgba(200,255,0,0.14)" stroke-width="0.8"/>
+      <circle cx="28" cy="84" r="6" fill="#0e0e0e" stroke="rgba(200,255,0,0.2)" stroke-width="1"/>
+      <rect x="19" y="118" width="12" height="20" rx="4" fill="#0d0d0d" stroke="rgba(200,255,0,0.1)" stroke-width="0.8"/>
+      <rect x="88" y="82" width="14" height="40" rx="5" fill="#111" stroke="rgba(200,255,0,0.14)" stroke-width="0.8"/>
+      <circle cx="92" cy="84" r="6" fill="#0e0e0e" stroke="rgba(200,255,0,0.2)" stroke-width="1"/>
+      <rect x="89" y="118" width="12" height="20" rx="4" fill="#0d0d0d" stroke="rgba(200,255,0,0.1)" stroke-width="0.8"/>
+      <rect x="28" y="76" width="64" height="58" rx="10" fill="url(#mbg)" stroke="rgba(200,255,0,0.17)" stroke-width="1"/>
+      <circle cx="60" cy="106" r="11" fill="url(#mcg)" class="rm-chest" filter="url(#mg)"/>
+      <circle cx="60" cy="106" r="6" fill="#0a0a0a" stroke="rgba(200,255,0,0.48)" stroke-width="1"/>
+      <circle cx="60" cy="106" r="3" fill="#c8ff00" class="rm-chest" filter="url(#mg)" id="mChestCore"/>
+      <line x1="32" y1="88" x2="52" y2="88" stroke="rgba(200,255,0,0.5)" stroke-width="1" stroke-linecap="round"/>
+      <line x1="32" y1="93" x2="48" y2="93" stroke="rgba(200,255,0,0.3)" stroke-width="0.8" stroke-linecap="round"/>
+      <line x1="68" y1="88" x2="84" y2="88" stroke="rgba(200,255,0,0.3)" stroke-width="0.8" stroke-linecap="round"/>
+      <rect x="52" y="66" width="16" height="14" rx="3" fill="#111" stroke="rgba(200,255,0,0.14)" stroke-width="0.8"/>
+      <rect x="30" y="24" width="60" height="46" rx="12" fill="url(#mbg)" stroke="rgba(200,255,0,0.2)" stroke-width="1"/>
+      <rect x="36" y="34" width="48" height="24" rx="7" fill="#020202" stroke="rgba(200,255,0,0.1)" stroke-width="0.8"/>
+      <g class="rm-eye"><circle cx="48" cy="46" r="8" fill="#030303" stroke="rgba(200,255,0,0.18)" stroke-width="0.8"/><circle cx="48" cy="46" r="5.2" fill="url(#meg)" filter="url(#mg)"/><circle cx="48" cy="46" r="2" fill="#080808"/><circle cx="49" cy="45" r="1" fill="rgba(255,255,255,0.7)"/></g>
+      <g class="rm-eye rm-eye-r"><circle cx="72" cy="46" r="8" fill="#030303" stroke="rgba(200,255,0,0.18)" stroke-width="0.8"/><circle cx="72" cy="46" r="5.2" fill="url(#meg)" filter="url(#mg)"/><circle cx="72" cy="46" r="2" fill="#080808"/><circle cx="73" cy="45" r="1" fill="rgba(255,255,255,0.7)"/></g>
+      <rect x="48" y="63" width="24" height="5" rx="2.5" fill="#060606" stroke="rgba(200,255,0,0.09)" stroke-width="0.8"/>
+      <line x1="52" y1="65.5" x2="52" y2="65.5" stroke="rgba(200,255,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="57" y1="65.5" x2="57" y2="65.5" stroke="rgba(200,255,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="62" y1="65.5" x2="62" y2="65.5" stroke="rgba(200,255,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+      <line x1="67" y1="65.5" x2="67" y2="65.5" stroke="rgba(200,255,0,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+      <rect x="22" y="32" width="10" height="22" rx="4" fill="#0d0d0d" stroke="rgba(200,255,0,0.1)" stroke-width="0.8"/>
+      <rect x="88" y="32" width="10" height="22" rx="4" fill="#0d0d0d" stroke="rgba(200,255,0,0.1)" stroke-width="0.8"/>
+      <rect x="58" y="10" width="4" height="17" rx="2" fill="#111" stroke="rgba(200,255,0,0.14)" stroke-width="0.8"/>
+      <circle class="rm-ant" cx="60" cy="8" r="4" fill="#c8ff00" filter="url(#mg)" id="mAnt"/>
+    </svg>
+    <div class="robot-mini-shadow"></div>
+  </div>
+
+  <!-- Mode toggle (user/admin) -->
+  <div class="mode-toggle" id="modeToggle">
+    <button class="mode-btn active" id="modeUserBtn" onclick="setLoginMode('user')">◈ USER</button>
+    <button class="mode-btn" id="modeAdminBtn" onclick="setLoginMode('admin')">⬡ ADMIN</button>
+  </div>
+
+  <!-- Login card -->
+  <div class="login-card" id="loginCard">
+    <div class="lcard-glow"></div>
+    <div class="lcard-hdr">
+      <div>
+        <div class="lcard-title" id="lcardTitle">Selamat Datang</div>
+        <div class="lcard-sub" id="lcardSub">MASUKKAN ACCESS KEY ANDA</div>
+      </div>
+      <div class="lcard-badge" id="lcardBadge">MX-01</div>
+    </div>
+
+    <div class="lfield">
+      <label class="llabel">Access Key</label>
+      <div class="linput-wrap">
+        <span class="licon">⬡</span>
+        <input class="linput" type="password" id="loginKey" placeholder="••••••••••••••••••••••" autocomplete="off" spellcheck="false">
+        <div class="lunderline"></div>
+      </div>
+    </div>
+
+    <button class="login-submit-btn" id="loginSubmit">
+      <span id="loginSubmitTxt">MASUK KE STUDIO</span>
+      <div class="lspinner" id="lspinner"></div>
+    </button>
+
+    <div class="lterm">
+      <div class="lterm-line" id="ltermLine">$ sys.init — menunggu autentikasi<span class="lcursor"></span></div>
+    </div>
+  </div>
+
+  <!-- Unlock admin hint -->
+  <div class="login-admin-hint" id="loginAdminHint"></div>
+  <button class="login-brand-unlock" id="brandUnlock" type="button">MIUX STUDIO</button>
+</div>
+
+<!-- ════════════ DASHBOARD ════════════ -->
+<div id="viewDashboard" class="view-dashboard">
+  <!-- Navbar -->
+  <nav class="dnav">
+    <div class="dnav-left">
+      <div class="dnav-logo">MIUX<span>STUDIO</span></div>
+      <div class="dnav-status">
+        <div class="pulse-dot sm" id="dnavDot"></div>
+        <span id="dnavStatusTxt">LIVE</span>
+      </div>
+    </div>
+    <div class="dnav-right">
+      <div class="dnav-clock" id="dnavClock">--:--:--</div>
+      <div class="dnav-user" id="dnavUser">—</div>
+      <button class="dnav-btn" id="dnavLogout">◈ KELUAR</button>
+    </div>
+  </nav>
+
+  <!-- Alert bar -->
+  <div class="alert-bar hidden" id="alertBar"></div>
+
+  <!-- Stats -->
+  <div class="stats-row" id="statsGrid"></div>
+
+  <!-- Tab bar -->
+  <div class="tab-bar" id="tabNav"></div>
+
+  <!-- Tab panels -->
+  <div class="tab-panels">
+
+    <!-- TAB: OVERVIEW (admin only) -->
+    <section id="tab-overview" class="tab-panel hidden">
+      <div class="pcard">
+        <div class="pcard-hdr">
+          <span class="pcard-title">◈ Monitoring Admin</span>
+          <span class="pcard-badge live-badge">LIVE</span>
+        </div>
+        <div id="adminOverviewContent" class="overview-grid"></div>
+      </div>
+    </section>
+
+    <!-- TAB: CREATE (user) -->
+    <section id="tab-create" class="tab-panel hidden">
+      <div class="pcard">
+        <div class="pcard-hdr">
+          <span class="pcard-title">⬢ Buat Proyek Baru</span>
+        </div>
+
+        <!-- Help banner -->
+        <div class="help-banner">
+          <div class="help-icon">💡</div>
+          <div class="help-content">
+            <strong>Cara Kerja</strong>
+            Upload foto karakter + video referensi gerak → AI Kling akan memindahkan gerakan dari video ke foto Anda. Hasil berupa video baru yang siap ditonton &amp; diunduh.
+          </div>
+        </div>
+
+        <div class="create-grid">
+          <!-- Image upload -->
+          <div class="upload-zone-wrap">
+            <div class="uz-label">Foto Karakter <span class="uz-tag">Wajib</span></div>
+            <div class="upload-zone" id="imgZone" data-type="image">
+              <div class="uz-icon" id="imgZoneIcon">🖼</div>
+              <div class="uz-title" id="imgZoneTitle">Klik atau seret foto ke sini</div>
+              <div class="uz-hint">JPG, PNG, WEBP — maks 10 MB</div>
+              <input type="file" class="uz-input" id="imageFile" accept="image/*">
+            </div>
+            <div class="uz-status" id="imgStatus"></div>
+          </div>
+
+          <!-- Video upload -->
+          <div class="upload-zone-wrap">
+            <div class="uz-label">Video Referensi Gerak <span class="uz-tag">Wajib</span></div>
+            <div class="upload-zone" id="vidZone" data-type="video">
+              <div class="uz-icon" id="vidZoneIcon">🎬</div>
+              <div class="uz-title" id="vidZoneTitle">Klik atau seret video ke sini</div>
+              <div class="uz-hint">MP4, MOV, WEBM — maks 50 MB</div>
+              <input type="file" class="uz-input" id="videoFile" accept="video/*">
+            </div>
+            <div class="uz-status" id="vidStatus"></div>
+          </div>
+
+          <!-- Title -->
+          <div class="form-field full">
+            <label class="flabel">Judul Proyek <span class="fopt">Opsional</span></label>
+            <input class="finput" type="text" id="taskTitle" placeholder="Contoh: Produk Baju Dance Test">
+          </div>
+
+          <!-- Settings row -->
+          <div class="form-field">
+            <label class="flabel">Tier</label>
+            <select class="fselect" id="taskTier">
+              <option value="STD" selected>◉ STANDARD</option>
+              <option value="PRO">◈ PRO</option>
+            </select>
+          </div>
+
+          <div class="form-field">
+            <label class="flabel">Orientasi</label>
+            <select class="fselect" id="taskOrientation">
+              <option value="VIDEO" selected>⬢ VIDEO</option>
+              <option value="IMAGE">⬡ IMAGE</option>
+            </select>
+          </div>
+
+          <div class="form-field full">
+            <label class="flabel">CFG Scale <span class="fcfgval" id="cfgDisplay">0.5</span></label>
+            <input class="frange" type="range" id="taskCfg" min="0" max="1" step="0.05" value="0.5">
+            <div class="frange-labels"><span>0 (Bebas)</span><span>0.5</span><span>1 (Ketat)</span></div>
+          </div>
+
+          <div class="form-field full">
+            <label class="flabel">Prompt <span class="fopt">Opsional</span></label>
+            <textarea class="finput ftextarea" id="taskPrompt" rows="3" placeholder="Deskripsikan gaya gerak yang diinginkan, kosongkan jika tidak perlu…"></textarea>
+          </div>
+        </div>
+
+        <button class="action-btn" id="createTaskBtn">
+          <span class="action-btn-txt">⬢ SUBMIT PROYEK</span>
+          <div class="action-shimmer"></div>
+        </button>
+      </div>
+    </section>
+
+    <!-- TAB: PROJECTS -->
+    <section id="tab-projects" class="tab-panel hidden">
+      <div class="pcard">
+        <div class="pcard-hdr">
+          <span class="pcard-title">◉ Daftar Proyek</span>
+          <div style="display:flex;gap:8px;align-items:center">
+            <span class="pcard-badge" id="projectsCount">— proyek</span>
+            <div class="live-dot"></div>
+          </div>
+        </div>
+
+        <div class="filter-row" id="taskFilterRow">
+          <button class="fbtn active" data-tfilter="ALL">SEMUA</button>
+          <button class="fbtn" data-tfilter="ACTIVE">AKTIF</button>
+          <button class="fbtn" data-tfilter="COMPLETED">SELESAI</button>
+          <button class="fbtn" data-tfilter="FAILED">GAGAL</button>
+        </div>
+
+        <div id="tasksList" class="task-list"></div>
+      </div>
+    </section>
+
+    <!-- TAB: USERS (admin only) -->
+    <section id="tab-users" class="tab-panel hidden">
+      <div class="pcard">
+        <div class="pcard-hdr">
+          <span class="pcard-title">⬡ Manajemen User</span>
+        </div>
+
+        <!-- Create user form -->
+        <div class="subcard">
+          <div class="subcard-hdr">Buat User Baru</div>
+          <div class="form-2col">
+            <div class="form-field">
+              <label class="flabel">Nama User</label>
+              <input class="finput" id="newUserName" type="text" placeholder="Nama lengkap user">
+            </div>
+            <div class="form-field">
+              <label class="flabel">Access Key</label>
+              <input class="finput" id="newUserKey" type="text" placeholder="Key unik untuk user ini">
+            </div>
+            <div class="form-field">
+              <label class="flabel">Aktif Mulai</label>
+              <input class="finput" id="newUserStart" type="datetime-local">
+            </div>
+            <div class="form-field">
+              <label class="flabel">Aktif Sampai</label>
+              <input class="finput" id="newUserEnd" type="datetime-local">
+            </div>
+            <div class="form-field full">
+              <label class="flabel">Catatan</label>
+              <textarea class="finput ftextarea" id="newUserNotes" rows="2" placeholder="Catatan admin (opsional)"></textarea>
+            </div>
+          </div>
+          <button class="action-btn" id="createUserBtn">
+            <span class="action-btn-txt">⬡ BUAT USER</span>
+            <div class="action-shimmer"></div>
+          </button>
+        </div>
+
+        <div id="usersList" class="user-list"></div>
+      </div>
+    </section>
+
+    <!-- TAB: API POOL (admin only) -->
+    <section id="tab-api" class="tab-panel hidden">
+      <div class="pcard">
+        <div class="pcard-hdr">
+          <span class="pcard-title">⬤ API Key Pool</span>
+          <div style="display:flex;gap:8px;align-items:center">
+            <span class="pcard-badge" id="keysCount">— key</span>
+            <button class="mini-btn" id="testAllBtn">TEST ALL</button>
+          </div>
+        </div>
+
+        <div class="subcard">
+          <div class="subcard-hdr">Import API Keys</div>
+          <div class="form-2col">
+            <div class="form-field full">
+              <label class="flabel">API Keys Freepik <span class="fopt">1 key per baris</span></label>
+              <textarea class="finput ftextarea fmono" id="bulkKeys" rows="6" placeholder="fpk_xxxxxxxxxxxxx&#10;fpk_yyyyyyyyyyyyy"></textarea>
+            </div>
+            <div class="form-field full">
+              <label class="flabel">Label <span class="fopt">Opsional — 1 per baris</span></label>
+              <textarea class="finput ftextarea fmono" id="bulkLabels" rows="4" placeholder="Key Utama&#10;Key Cadangan"></textarea>
+            </div>
+          </div>
+          <button class="action-btn" id="importKeysBtn">
+            <span class="action-btn-txt">⬤ IMPORT KEYS</span>
+            <div class="action-shimmer"></div>
+          </button>
+        </div>
+
+        <div class="filter-row">
+          <button class="fbtn active" data-kfilter="ALL">SEMUA</button>
+          <button class="fbtn" data-kfilter="HEALTHY">HEALTHY</button>
+          <button class="fbtn" data-kfilter="COOLDOWN">COOLDOWN</button>
+          <button class="fbtn" data-kfilter="INVALID">INVALID</button>
+        </div>
+
+        <div id="keysList" class="key-list"></div>
+      </div>
+    </section>
+
+  </div><!-- /tab-panels -->
+</div><!-- /viewDashboard -->
+
+</div><!-- /pages -->
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>
