@@ -49,7 +49,10 @@ app.use(express.json({
   }
 }));
 app.use(morgan("tiny"));
-app.use(express.static(publicDir));
+
+if (!config.isVercel) {
+  app.use(express.static(publicDir));
+}
 
 function normalizePublicUrl(url) {
   const value = String(url || "").trim();
@@ -1053,7 +1056,14 @@ app.use("/api", (_req, res) => {
   res.status(404).json({ ok: false, error: "API route not found" });
 });
 
-app.get("*", (_req, res) => res.sendFile(indexFile));
+if (config.isVercel) {
+  app.get("/favicon.ico", (_req, res) => res.status(204).end());
+  app.get("/favicon.png", (_req, res) => res.status(204).end());
+  app.get("/", (_req, res) => res.redirect("/index.html"));
+  app.get("*", (_req, res) => res.status(404).end());
+} else {
+  app.get("*", (_req, res) => res.sendFile(indexFile));
+}
 
 app.use((error, _req, res, _next) => {
   console.error("[unhandled]", error);
